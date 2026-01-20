@@ -1,6 +1,6 @@
-# WritersBlock
+# WriterBlock
 
-**WritersBlock** is an author progress tracking application designed to help writers track their word counts, manage books, and visualize their progress.
+**WriterBlock** is an author progress tracking application designed to help writers track their word counts, manage books, and visualize their progress.
 
 > **Note**: This is an archived project developed around 2020 using AngularJS (1.x). It is no longer under active development.
 
