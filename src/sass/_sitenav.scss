@@ -1,0 +1,86 @@
+.sitenav {
+    display: grid;
+    grid-template-areas:
+        "books logo leaderboard";
+    grid-template-columns: 150px auto 150px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+
+    @media screen and (max-width: 799px){
+        grid-template-columns: 75px auto 75px;
+    }
+
+    &__books,
+    &__leaderboard {
+    	text-align: center;
+    	position: relative;
+    }
+
+	&__active::after {
+		content: '';
+		display: block;
+		position: absolute;
+		width: 80%;
+		height: 60%;
+		top: 40%;
+		left: 20%;
+		background: $cream;
+		z-index: -1;
+		border-radius: 50%;
+		opacity: 0.5;
+	}
+
+    &__label {
+        position: absolute;
+        bottom: 20px;
+        text-align: center;
+        width: 100%;
+        color: black;
+        font-family: $titan;
+        text-shadow: 0 0 4px white;
+    }
+
+    &__icon {
+    	font-size: 100px;
+    	cursor: pointer;
+
+        @media screen and (max-width: 799px){
+            font-size: 50px;
+        }
+    }
+
+    &__logo {
+    	color: $golden;
+    	text-shadow: 0px 0px 5px black;
+    	position: relative;
+
+    	&-title {
+    		font-family: $titan;
+			width: 100%;
+			text-align: center;
+			font-size: 75px;
+			line-height: 130px;
+
+            @media screen and (max-width: 799px) {
+                font-size: 38px;
+                line-height: 61px;
+            }
+    	}
+
+    	&-version {
+    		font-family: $robo;
+			font-weight: 700;
+			font-size: 25px;
+			position: absolute;
+			bottom: 20px;
+			right: 20px;
+			cursor: pointer;
+
+            @media screen and (max-width: 799px) {
+                font-size: 14px;
+                bottom: 10px;
+            }
+    	}
+    }
+}

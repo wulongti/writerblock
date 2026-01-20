@@ -1,0 +1,22 @@
+.settings {
+
+	&__button {
+		position: absolute;
+		top: 5px;
+		right: 10px;
+
+		&:hover {
+			text-shadow: 0 0 5px dodgerblue;
+		}
+	}
+
+	&__main {
+
+		> div {
+		    border: 2px solid;
+		    border-radius: 15px;
+		    padding: 20px;
+		    margin: 0 0 20px;			
+		}
+	}
+}

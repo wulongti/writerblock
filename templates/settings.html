@@ -1,0 +1,69 @@
+<div class="settings settings__main" ng-if="tab == 'main'">
+	<h2>⚙️ Manage User Settings</h2>
+	<div class="settings__main--basic">
+		<h3>Basic Information</h3>
+		<div class="settings__main--basic-logout textLink" ng-click="logout()" ng-if="user.status == 'online'">
+			Log me out
+		</div>
+		<div class="settings__main--basic-status">
+			<strong>Account Type:</strong> <span>{{user.status}}</span>
+		</div>
+		<div class="settings__main--basic-name" ng-if="user.status == 'online'">
+			<strong>Display Name:</strong> <span>{{user.name}}</span>
+		</div>
+		<div class="settings__main--basic-email" ng-if="user.status == 'online'">
+			<strong>Email Address:</strong> <span>{{user.email}}</span>
+		</div>
+		<div class="settings__main--basic-account textLink" ng-click="linky('welcome', 'account');" ng-if="user.status == 'local'">
+			Create an online user account
+		</div>
+		<div class="settings__main--basic-account textLink" ng-click="setTab('account')" ng-if="user.status == 'online'">
+			Update Information
+		</div>
+	</div>
+
+	<div class="settings__main--options" ng-if="user.status == 'online'">
+		<h3>Options</h3>
+		<div class="settings__main--options-sync">
+			<strong>Sync localStorage with dataBase<span class="question">❔ <span class="answer">Normally we sync your data between what we store on your device and what we store in the database so that if you can't connect for some reason, you can still keep using the app. Of course, this is also what keeps you logged in, so anyone who has access to this device will also be able to access your data.  Turning this off will prevent your data from being stored locally.  You should do this if you're on a shared or public device.</span> </span>: </strong>
+			<div class="toggle" ng-class="{'active': user.sync}" ng-click="setSync()"></div>
+		</div>
+		<div class="settings__main--options-wipe">
+			<strong>Wipe localStorage when logging out<span class="question">❔ <span class="answer">If you have syncing turned on, then as long as you're logged in, we'll keep your localStorage intact. If this is turned off, then when you log out, you'll still be able to access the data in Single Device mode.</span>:</strong>
+			<div class="toggle" ng-class="{'active': user.wipe}" ng-click="setWipe()"></div>
+		</div>
+		<div class="settings__main--options-share">
+			<strong>Share progress with Leader Board<span class="question">❔ <span class="answer">Turn this off, if you would prefer not to share your Display Name, Books, and wordcounts with the Leader Board.</span>:</strong>
+			<div class="toggle" ng-class="{'active': user.share}" ng-click="setShare()"></div>
+		</div>
+	</div>
+
+	<div class="settings__main--tools">
+		<h3>Tools</h3>
+		<div class="settings__main--tools-csv" ng-click="exportCSV()">
+			📦 Export data to CSV file
+		</div>
+		<div class="settings__main--tools-ls" ng-click="setTab('killLS')">
+			💀 Wipe all localStorage data
+		</div>
+		<div class="settings__main--tools-acct" ng-click="setTab('killAcct')" ng-if="user.status == 'online'">
+			💀 Kill online account
+		</div>
+	</div>
+</div>
+
+<div class="settings settings__killLS" ng-if="tab == 'killLS'">
+	<h2>💀 Wipe all localStorage data</h2>
+	<p>This will wipe all of your local data from this device.  If you have an account and are logged in, then your data is safe in our database, and you'll be logged out, this is handy if you're on a shared computer and don't want to turn off the global sync setting on all your devices. If you are local only, then all of your data will be lost.</p>
+	<div class="basicForm__buttons">
+		<button class="bigButton" ng-click="killLS()">Wipe localStorage</button>
+	</div>
+</div>
+
+<div class="settings settings__killAcct" ng-if="tab == 'killAcct'">
+	<h2>💀 Kill Online Account</h2>
+	<p>This will remove all of your data from our database and return you to a Local Only user.  If you had syncing turned on, then the localStorage data on this device will be untouched.  If you wish to remove everything then be sure to Wipe localStorage after this.</p>
+	<div class="basicForm__buttons">
+		<button class="bigButton" ng-click="killAcct()">Delete Account</button>
+	</div>
+</div>

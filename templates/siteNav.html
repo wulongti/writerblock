@@ -1,0 +1,24 @@
+<div class="sitenav__books" ng-click="linky('books', 'library')" ng-class="{'sitenav__active': page !== 'leaderboard'}" title="Manage your books" data-page="{{page}}">
+	<div class="sitenav__books--button" ng-show="['books', 'leaderboard', 'settings'].includes(page)">
+		<div class="sitenav__label">My Books</div>
+		<div class="sitenav__icon" >📚</div>
+	</div>
+	<div class="sitenav__books--button" ng-show="page == 'welcome'">
+		<div class="sitenav__label">Welcome</div>
+		<div class="sitenav__icon" >📖</div>
+	</div>
+	<div class="sitenav__books--button" ng-show="['changelog', 'tos'].includes(page)">
+		<div class="sitenav__label">Back</div>
+		<div class="sitenav__icon" >📔</div>
+	</div>
+</div>
+
+<div class="sitenav__logo">
+	<H1 class="sitenav__logo-title">writerBlock</h1>
+	<div class="sitenav__logo-version" ng-click="linky('changelog')">v{{version.major}}.{{version.minor}}</div>
+</div>
+
+<div class="sitenav__leaderboard" ng-class="{'active':user.status == 'online'}" ng-click="linky('leaderboard')" ng-class="{'sitenav__active': page == 'leaderboard'}" title="View author leaderboards">
+	<div class="sitenav__label">Leader Board</div>
+	<div class="sitenav__icon">📊</div>
+</div>

@@ -1,0 +1,39 @@
+<div class="stats">
+	<h2>My Nerdy Stats</h2>
+	<div class="stats__user">
+		<h3>Personal Stats</h3>
+		<div class="stats__field">
+			<strong>Total Books:</strong> {{count(books)}}
+		</div>
+		<div class="stats__field">
+			<strong>Total Entries:</strong> ##
+		</div>
+		<div class="stats__field">
+			<strong>Total Words Written:</strong> ##
+		</div>
+		<div class="stats__field">
+			<strong>Most Entries:</strong> #book# - ## entries
+		</div>
+		<div class="stats__field">
+			<strong>Best Entry:</strong> #book# 00/00/0000 - 00 words 
+		</div>
+	</div>
+	<div class="stats__rank" ng-if="user.share">
+		<h3>Leaderboard Rankings</h3>
+		<div class="stats__field">
+			<strong>Number of Books:</strong> ##
+		</div>
+		<div class="stats__field">
+			<strong>Most Words Written per book:</strong> ##
+		</div>
+		<div class="stats__field">
+			<strong>Most Words Written Total:</strong> ##
+		</div>
+		<div class="stats__field">
+			<strong>Most Words in a Single Entry:</strong> ##
+		</div>
+		<div class="stats__field">
+			<strong>Most Entries for a Single Book:</strong> ##
+		</div>
+	</div>
+</div>

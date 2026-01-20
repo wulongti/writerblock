@@ -1,0 +1,27 @@
+https://www.compart.com/en/unicode/search?q=book#characters
+
+📔 decorative notebook (U+1F4D4)
+📕 Closed red book (U+1F4D5) [vol. 1 on apple]
+📗 Green book (U+1F4D7) [vol. 2 on apple]
+📘 Blue book (U+1F4D8) [vol. 3 on apple]
+📙 Orange book (U+1F4D9) [vol. 4 on apple]
+📖 Open book (U+1F4D6)
+📚 Book stack (U+1F4DA)
+📑 Bookmark tab (U+1F4D1)
+📓 notebook (U+1F4D3)
+
+📊 bar chart (U+1F4CA)
+
+💀 skull (U+1F480)
+
+📅 calendar (U+1F4C5)
+
+🤮 spew (U+1F92E)
+
+⚙️ gear (U+2699)
+
+❔ ? (U+2754)
+
+📈 up chart (U+1F4C8)
+
+📦 package (U+1F4E6)

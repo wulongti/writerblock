@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html class="wBlock" ng-app="wBlock" id="WBlock" ng-controller="mainCtrl">
+<head>
+	<title>writerBlock v{{version.major}}.{{version.minor}}.{{version.trivial}}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+	<!-- <link rel="icon" href="/favicon.ico" type="image/x-icon"> -->
+	<!-- <link rel="apple-touch-icon-precomposed" href="/images/logo-152.png"> -->
+	<!-- <meta name="msapplication-TileColor" content="#000000"> -->
+	<!-- <meta name="msapplication-TileImage" content="/images/logo-152.png"> -->
+	<!-- <link rel="manifest" href="/json/manifest.json"> -->
+	<meta name="theme-color" content="#694f29">
+
+	<script src="app.js"></script>
+	<link rel="stylesheet" type="text/css" href="app.css">
+
+	<base href="/">
+</head>
+<body>
+	<header>
+		<nav ng-include="'templates/siteNav.html'" class="sitenav"></nav>
+	</header>
+	<div ng-view class="content"></div>
+	<footer ng-include="'templates/footer.html'" class="footer"></footer>
+	<div class="error" ng-if="error[1]" ng-click="setError()">
+		<div class="error_box">
+			<div class="error__message" ng-repeat="mssg in error">{{mssg.text}}</div>
+		</div>
+		
+	</div>
+	<div class="loading" ng-if="loading">
+		<div align="center" class="cssload-fond">
+			<div class="cssload-container-general">
+					<div class="cssload-internal"><div class="cssload-ballcolor cssload-ball_1"></div></div>
+					<div class="cssload-internal"><div class="cssload-ballcolor cssload-ball_2"></div></div>
+					<div class="cssload-internal"><div class="cssload-ballcolor cssload-ball_3"></div></div>
+					<div class="cssload-internal"><div class="cssload-ballcolor cssload-ball_4"></div></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

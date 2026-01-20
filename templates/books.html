@@ -1,0 +1,107 @@
+<div class="settings__button" ng-click="linky('settings', 'main')" title="Manage user settings">
+	<div class="settings__button--icon">⚙️</div>
+</div>
+<div class="books books__library" ng-if="tab == 'library'">
+	<h2>📚 My Book Library</h2>
+	<span class="books__library--add" ng-click="editBook()">
+		📔 Add a new book to your library
+	</span>
+	<div class="books__library--book" ng-repeat="bk in books">
+		<div class="books__library--icon" ng-click="editBook(bk.id)"></div>
+		<div class="books__library--title textLink" ng-click="editBook(bk.id)">{{bk.name}}</div>
+		<div class="books__library--kill"><span class="books__library--kill-icon" ng-click="killBook(bk.id)">💀</span></div>
+		<div class="books__library--goal">Goal: {{bk.target}}K</div>
+		<div class="books__library--entry">
+			<span class="books__library--entry-button" ng-click="entry(bk.id, 'new')">📅 Add new wordCount</span>
+		</div>
+		<div class="books__library--recent" ng-if="bk.latest.timestamp > 0" ng-click="entry(bk.id, 'view')">Most Recent WordCount Entry: <strong>{{getDate(bk.latest.timestamp)}}</strong> - added <strong>{{bk.latest.words}}</strong> words</div>
+		<div class="books__library--view" ng-if="bk.latest.timestamp > 0">
+			<span class="books__library--view-button" ng-click="entry(bk.id, 'view')">📑 View wordCounts</span>
+		</div>
+		<div class="books__library--status">
+			<div class="books__library--status-current" style="width:{{parseInt(bk.total)/(parseInt(bk.target)*1000)*100}}%;" ng-class="{'complete': (parseInt(bk.total)/(parseInt(bk.target)*1000)*100) >= 100}">{{(parseInt(bk.total)/1000).toFixed(1)}}K</div>
+			<div class="books__library--status-goal">{{bk.target}}K</div>
+		</div>
+	</div>
+	<span class="books__library--add" ng-click="editBook()" ng-if="books[9]">
+		📔 Add a new book to your library
+	</span>
+</div>
+
+<div class="books books__editBook" ng-if="tab == 'bookView'">
+	<h2>📔 Manage a book</h2>
+	<div class="books__editBook--form basicForm">
+		<div class="books__editBook--title basicForm__field">
+			<label>Book Title:</label>
+			<input type="text" name="title" id="title" ng-model="book.name" placeholder="The Maltize Chickadee">
+		</div>
+		<div class="books__editBook--goal basicForm__field">
+			<label>Target Word Count (in K):</label>
+			<input type="text" name="goal" id="goal" ng-model="book.target" placeholder="100">
+		</div>
+		<div class="books__editBook--total basicForm__field">
+			<label>Current Word Count:</label>
+			<input type="text" name="total" id="total" ng-model="book.total" placeholder="100">
+		</div>
+		<div class="books__editBook--buttons basicForm__buttons">
+			<button class="bigButton books__editBook--buttons-update" ng-click="editBook(book.id, 'update')">Update Library</button>
+			<button class="bigButton books__editBook--buttons-cancel" ng-click="editBook(book.id, 'cancel')">Cancel</button>
+		</div>
+	</div>
+</div>
+
+<div class="books books__killBook" ng-if="tab == 'killBook'">
+	<h2>💀 Kill {{book.name}}</h2>
+	<div class="basicForm">
+		<p>Are you sure you want to Kill this book? You'll lose all of your progress and wordcount entries.</p>
+		<div class="basicForm__buttons">
+			<button class="bigButton" ng-click="killBook(book.id, 'kill')">💀Kill It!💀</button>
+			<button class="bigButton" ng-click="killBook(book.id, 'cancel')">Nevermind</button>
+		</div>
+	</div>
+
+</div>
+
+<div class="books books__timeEntry" ng-if="tab == 'timeEntry'">
+	<h2>📅 Add new wordcount entry for {{book.name}}</h2>
+	<div class="books__timeEntry--form basicForm">
+		<p>Enter the current total wordcount for your manuscript, we'll figure out the difference from your last entry.</p>
+		<p>Your current total is <strong>{{book.total}}</strong></p>
+		<label>📅
+			<input type="date" name="date" class="books__timeEntry--date basicForm__field" ng-model="time.date">
+		</label>
+		<label>📑
+			<input type="text" name="count" class="books__timeEntry--count basicForm__field" ng-model="time.count" placeholder="New Wordcount">
+		</label>
+		<div class="basicForm__buttons">
+			<button class="bigButton" ng-click="entry(book.id, 'add')">Add wordCount</button>
+			<button class="bigButton" ng-click="entry(book.id, 'cancel')">Discard</button>
+		</div>
+		
+	</div>
+</div>
+
+<div class="books books__timeEntries" ng-if="tab == 'timeEntries'">
+	<h2>📑 WordCount entries for {{book.name}}</h2>
+	<div class="books__timeEntries--content">
+		<div class="books__timeEntries--form basicForm">
+			<span class="books__timeEntries--back" ng-click="entry(book.id,'back')">
+				📚 Back to library
+			</span>
+
+			<div class="books__timeEntries--entry" ng-repeat="ent in book.entries | orderBy: '-timestamp'">
+				<div class="books__timeEntries--entry-date">{{getDate(ent.timestamp)}}</div>
+				<div class="books__timeEntries--entry-count">{{ent.words}} words</div>
+			</div>
+
+			<span class="books__timeEntries--back" ng-click="entry(book.id,'back')" ng-if="book.entries[9]">
+				📚 Back to library
+			</span>
+		</div>
+		<div class="books__timeEntries--chart" ng-init="setChartCap()">
+			<div class="books__timeEntries--chart-entry" ng-repeat="cent in book.entries | orderBy: 'timestamp'" alt="{{getDate(cent.timestamp)}} - {{cent.words}} words" data-date="{{getDate(cent.timestamp)}}" data-words="{{cent.words}} words" ng-class="{'bottomHalf': $index < (count(book.entries) / 2)}">
+				<div class="books__timeEntries--chart-bar" style="bottom:{{(parseInt(cent.words) / chartCap)*100}}%"></div>
+			</div>
+		</div>		
+	</div>
+</div>

@@ -1,0 +1,100 @@
+.content {
+    width: 100%;
+    max-width: 800px;
+    margin: 15px auto;
+    background: $cream;
+    color: $coffee;
+    padding: 10px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    position: relative;
+
+    @media screen and (max-width: 799px) {
+        width: calc(100% - 10px);
+    }
+}
+
+.textLink, a {
+	text-decoration: underline;
+	font-weight: bold;
+	transition: color 0.25s;
+    display: inline-block;
+
+	&:hover {
+		color: dodgerblue;
+	}
+}
+
+.bigButton {
+    // border: 2px solid black;
+    border-radius: 13px;
+    background: $coffee;
+    color: gold;
+    font-family: $titan;
+    font-size: 20px;
+    padding: 10px 25px;
+    text-shadow: 0 0 3px black;
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+}
+
+.changelog__log {
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.basicForm {
+    width: 350px;
+    margin: 0 auto;
+    font-size: 20px;
+
+    &__field {
+        margin-bottom: 8px;
+    }
+
+    &__buttons {
+        text-align: center;
+        padding-bottom: 25px;
+    }
+}
+
+.error {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.25);
+
+    &_box {
+        position: absolute;
+        top: 40%;
+        left: 25%;
+        right: 25%;
+        border: 5px solid pink;
+        border-radius: 10px;
+        padding: 15px;
+        background: crimson;
+        font-weight: bold;
+        font-size: 25px;
+        color: white;
+        box-shadow: 0 0 20px darkred;
+    }
+
+    &__message {
+        margin-bottom: 8px;
+        border-top: 1px solid salmon;
+
+        &:first-of-type {
+            border-top: none;
+        }
+
+        &::before {
+            content: '🤮';
+        }
+    }
+}
+
+@import "_preloader";
+@import "_welcome";
+@import "_books";
+@import "_settings";

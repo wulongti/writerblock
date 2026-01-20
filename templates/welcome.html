@@ -1,0 +1,86 @@
+<div class="welcome welcome__intro" ng-if="tab == 'intro'">
+	<p>Welcome to the writerBlock app!  This app will help you keep track of how many words you've written on your various books.  If you like, it can even enter your progress into our LeaderBoard so you can see how you're doing against your fellow authors.</p>
+	<p>This app uses cookies to keep track if you're logged in, and we store your progress in our database, so that we can sync your progress across devices.  If you would prefer to keep all of your data and progress to yourself then use the Single Device option below, but be warned: if you clear your localStorage or your cookies, you will lose all of your progress and data, and your progress will only be accessible from THIS device and THIS browser.</p>
+	<div class="welcome__intro--buttons">
+		<button class="bigButton welcome__intro--account" ng-click="setTab('account')">Create Account</button>
+		<button class="bigButton welcome__intro--local" ng-click="localOnly()">Single Device</button>
+		<div class="welcome__intro--login textLink" ng-click="setTab('login')">I already have an account</div>
+	</div>
+</div>
+
+<div class="welcome welcome__account" ng-if="tab == 'account'">
+	<h2>📓 Create your account</h2>
+	<div class="welcome__account--form basicForm">
+		<div class="welcome__account--form-field email basicForm__field">
+			<label for="email">Email:</label>
+			<input type="text" name="email" id="email" ng-model="accountform.email" placeholder="name@email.com" required="required">
+		</div>
+		<div class="welcome__account--form-field pass basicForm__field">
+			<label for="pass">Password:</label>
+			<input type="password" name="pass" id="pass" placeholder="ItsaSecret" required="required" ng-model="accountform.pass">
+		</div>
+		<div class="welcome__account--form-field pass basicForm__field">
+			<label for="pass2">RePassword:</label>
+			<input type="password" name="pass2" id="pass2" placeholder="ItsaSecret" required="required" ng-model="accountform.pass2">
+		</div>
+		<div class="welcome__account--form-field name basicForm__field">
+			<label for="name">Display Name:</label>
+			<input type="text" name="name" id="name" ng-model="accountform.name" placeholder="O.G. Readmore" required="required">
+		</div>
+		<div class="welcome__account--form-field newsletter basicForm__field">
+			<label for="newsletter">
+				<input type="checkbox" name="newsletter" value="true" ng-model="accountform.newsletter"> Sign up for email updates?
+			</label>
+		</div>
+		<div class="welcome__account--form-field submit basicForm__buttons">
+			<button class="bigButton welcome__account--form-submit" ng-click="account()">Create Account</button>
+		</div>
+		<div class="welcome__account--form-field tos">
+			By using this app, you agree to the <a href="/#!/tos" target="_blank">Terms & Conditions</a>
+		</div>
+		<div class="welcome__intro--login textLink" ng-click="setTab('login')">I already have an account</div>
+	</div>
+</div>
+
+<div class="welcome welcome__login" ng-if="tab == 'login'">
+	<h2>📓 Log in to your account</h2>
+	<div class="welcome__login--form basicForm">
+		<div class="welcome__login--form-field email basicForm__field">
+			<label for="email">Email:</label>
+			<input type="text" name="email" id="email" ng-model="loginform.email" placeholder="name@email.com" required="required">
+		</div>
+		<div class="welcome__login--form-field pass basicForm__field">
+			<label for="pass">Password:</label>
+			<input type="password" name="pass" id="pass" placeholder="ItsaSecret" required="required" ng-model="loginform.pass">
+		</div>
+		<div class="welcome__login--form-field remember basicForm__field">
+			<label for="remember">
+				<input type="checkbox" name="remember" value="true" ng-model="loginform.remember"> Remember me?
+			</label>
+		</div>
+		<div class="welcome__login--form-field submit basicForm__buttons">
+			<button class="bigButton welcome__login--form-submit" ng-click="login()">Login</button>
+		</div>
+		<div class="welcome__login--form-field forgot">
+			<div class="textLink" ng-click="setTab('forgot')">I forgot my password</div>
+		</div>
+	</div>
+</div>
+
+<div class="welcome welcome__forgot" ng-if="tab == 'forgot'">
+	<h2>📓 Reset your password</h2>
+	<div class="welcome__forgot--form basicForm">
+		<div class="welcome__forgot--form-field email basicForm__field">
+			<label for="email">Email:</label>
+			<input type="text" name="email" id="email" ng-model="loginform.email" placeholder="name@email.com" required="required">
+		</div>
+		<div class="welcome__forgot--form-field submit basicForm__buttons">
+			<button class="bigButton welcome__forgot--form-submit" ng-click="passreset(loginform.email)">I forget</button>
+		</div>
+	</div>
+</div>
+
+<div class="welcome welcome__reset" ng-if="tab == 'reset'">
+	<h2>📓 Password Reset Email Sent</h2>
+	<p>If the email you submitted on the previous form is in our system, then check your inbox for a password reset link.</p>
+</div>

@@ -1,0 +1,39 @@
+{
+	"version": {
+		"major": 0,
+		"minor": 4,
+		"trivial": 1
+	},
+	"messages": [
+		{
+			"date": "5/8/2020",
+			"version": "0.4.1",
+			"message": "fixed a bug in sync where book name/total wouldn't update in the db when changed; some minor style changes"
+		},
+		{
+			"date": "4/29/2020",
+			"version": "0.4.0",
+			"message": "added sync functions to API for book entry and wordcount entry. Also added a really cool chart to the View Entries page to show progress over time though it doesn't account for breaks between entries."
+		},
+		{
+			"date": "4/27/2020",
+			"version": "0.3.0",
+			"message": "added sync functions to API on login and newAccount"
+		},
+		{
+			"date": "4/25/2020",
+			"version": "0.2.0",
+			"message": "added a 'settings' page, though none of it works yet. Also created the DB and create Account functions in the API, as well as the login and log out functions"
+		},
+		{
+			"date": "4/23/2020",
+			"version": "0.1.0",
+			"message": "I think I've got everything working for single device/localStorage.  None of the cross-device/account stuff works yet though."
+		},
+		{
+			"date": "4/21/2020",
+			"version": "0.0.0",
+			"message": "initial commit"
+		}
+	]
+}
